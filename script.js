@@ -1,8 +1,8 @@
 
 function getComputerChoice(){
     const choice = ["rock","paper", "sizzors"]
-    //let out = choice[Math.floor(Math.random() * choice.length)]// the code in brackits picks the index 
-     let out = "sizzors"
+    let out = choice[Math.floor(Math.random() * choice.length)]// the code in brackits picks the index 
+
     return out
 
 }
@@ -10,17 +10,23 @@ getComputerChoice()
 
 let computerSelection = getComputerChoice()
 let playerSelection = prompt("test");
+playerSelection = playerSelection.toLocaleLowerCase
 
 function winLogic(winningInupt){
     if(playerSelection === winningInupt){
-        console.log("you win")
+        console.log(`${playerSelection} beets ${computerSelection}`)
+       return true // win
+       
     }else{
-        console.log("you loose")
+        console.log(`${playerSelection} looses to ${computerSelection}`)
+        return false
     }
 }
 
 function logic(computerSelection, playerSelection){
-    computerSelection = computerSelection.toLowerCase()
+
+    
+    
     switch(computerSelection){
         case(playerSelection):{
             console.log("draw")
@@ -29,19 +35,28 @@ function logic(computerSelection, playerSelection){
             break
         }
         case('rock'):{
-            winLogic("paper")
-            break
+             return winLogic("paper")
         }
         case("sizzors"):{
-            winLogic("rock")
-            break
+            return winLogic("rock") 
         }
         case("paper"):{
-            winLogic("sizzors")
-            break
+            return winLogic("sizzors")  
         }
     }
 }
-   
+function game(){
+    let computerScore = 0
+    let playerScore = 0
+    let playerWin
+    for( let i = 0 ; i < 5; i++){
+        playerWin = logic()
+        if(playerWin){
+            playerScore++
+        }else{
+            computerScore ++
+        }
+    }
+}
+game()
 
-logic(computerSelection,playerSelection)
