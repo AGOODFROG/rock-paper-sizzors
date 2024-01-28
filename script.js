@@ -47,18 +47,25 @@ function logic(message){
 function game(){
  
     let playerWin
-    for( let i = 0 ; i < 5; i++){
-        console.log(`bot:${computerScore}, you:${playerScore}`)
-        playerWin = logic()
-        if(playerWin){
-            playerScore++
-        }else if(playerWin === "draw"){
-            logic()
-        }
-        else{
-            computerScore ++
-        }
+    const playerScoreOutput = document.getElementById("playerScore")
+    const comperterScoreOutput = document.querySelector("#botScore")
+    console.log(playerScoreOutput,comperterScoreOutput)
+    console.log(`bot:${computerScore}, you:${playerScore}`)
+    
+    playerWin = logic()
+    if(playerWin){
+        playerScore++
+        playerScoreOutput.textContent = playerScore
+    }else if(playerWin === "draw"){
+        logic()
     }
+    else{
+        computerScore ++
+        comperterScoreOutput.textContent = computerScore
+    }
+
+
+   
   
     
 }
