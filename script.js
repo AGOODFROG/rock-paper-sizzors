@@ -1,5 +1,19 @@
 let computerScore = 0
 let playerScore = 0
+
+const playerScoreOutput = document.getElementById("playerScore")
+const comperterScoreOutput = document.querySelector("#botScore")
+console.log(playerScoreOutput,comperterScoreOutput)
+console.log(`bot:${computerScore}, you:${playerScore}`)
+
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const skizzors = document.querySelector("#skizzors")
+
+rock.addEventListener("click",()=>{ logic("rock")})
+paper.addEventListener("click",()=>{logic("paper")})
+skizzors.addEventListener("click",()=>{logic("skizzors")})
+
 function getComputerChoice(){
     const choice = ["rock","paper", "skizzors"]
     let out = choice[Math.floor(Math.random() * choice.length)]// the code in brackits picks the index 
@@ -9,65 +23,38 @@ function getComputerChoice(){
 function winLogic(winningInupt, playerSelection,computerSelection){
     if( playerSelection === computerSelection){
         return ""
-    }
-    else if(playerSelection === winningInupt){
+    }else if(playerSelection === undefined){
+        return ""
+    }else if(playerSelection === winningInupt){
         console.log(`${playerSelection} beets ${computerSelection}`)
        
        return true // win  
-    }else{
+    }
+    else{
         console.log(`${playerSelection} looses to ${computerSelection}`)
         return false
     }
 }
 
-function logic(message){
-
-    if( message === undefined) message = "rock paper or skizzors"
+function logic(playerSelection){
     let computerSelection = getComputerChoice()
-    let input = prompt(message);
-    let playerSelection = input.toLowerCase()
+    
     
     switch(computerSelection){
         case(playerSelection):{
             console.log("draw")
-            logic("draw")
+            break;
         }
         case('rock'):{
-             return winLogic("paper", playerSelection,computerSelection) 
+             winLogic("paper", playerSelection,computerSelection) 
         }
         case("skizzors"):{
-            return winLogic("rock", playerSelection,computerSelection) 
+             winLogic("rock", playerSelection,computerSelection) 
         }
         case("paper"):{
-            return winLogic("skizzors", playerSelection,computerSelection)  
+            winLogic("skizzors", playerSelection,computerSelection)  
         }
        
     }
 }
-function game(){
- 
-    let playerWin
-    const playerScoreOutput = document.getElementById("playerScore")
-    const comperterScoreOutput = document.querySelector("#botScore")
-    console.log(playerScoreOutput,comperterScoreOutput)
-    console.log(`bot:${computerScore}, you:${playerScore}`)
-    
-    playerWin = logic()
-    if(playerWin){
-        playerScore++
-        playerScoreOutput.textContent = playerScore
-    }else if(playerWin === "draw"){
-        logic()
-    }
-    else{
-        computerScore ++
-        comperterScoreOutput.textContent = computerScore
-    }
-
-
-   
-  
-    
-}
-game()
 
