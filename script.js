@@ -3,7 +3,6 @@ let playerScore = 0
 
 const playerScoreOutput = document.querySelector("#playerScore")
 const comperterScoreOutput = document.querySelector("#botScore")
-console.log(playerScoreOutput,comperterScoreOutput)
 
 
 const rock = document.querySelector("#rock")
@@ -23,18 +22,12 @@ function getComputerChoice(){
 }
 
 function winLogic(winningInupt, playerSelection,computerSelection){
-    if( playerSelection === computerSelection){
-        return ""
-    }else if(playerSelection === undefined){
-        return ""
-    }else if(playerSelection === winningInupt){
+    if(playerSelection === winningInupt){
         scoreOutput.textContent = `${playerSelection} beets ${computerSelection}`
         playerScore ++
         playerScoreOutput.textContent = playerScore
-        
        return true // win  
-    }
-    else{
+    }else{
         scoreOutput.textContent = `${playerSelection} looses to ${computerSelection}`
         computerScore ++
         comperterScoreOutput.textContent = computerScore
@@ -44,13 +37,10 @@ function winLogic(winningInupt, playerSelection,computerSelection){
 }
 
 function logic(playerSelection){
-    let computerSelection = getComputerChoice()
-    console.log(playerScore,computerScore)
-    
-    
+    let computerSelection = getComputerChoice() 
     switch(computerSelection){
         case(playerSelection):{
-            scoreOutput.textContent ="draw"
+            scoreOutput.textContent =scoreOutput.textContent ="draw"
             break;
         }
         case('rock'):{
